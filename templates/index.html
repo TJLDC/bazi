@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八字排盘系统</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>八字排盘</h1>
+            <p class="subtitle">命理分析系统</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 输入表单 -->
+            <div class="input-section card">
+                <h2>输入信息</h2>
+                
+                <!-- 选择输入方式 -->
+                <div class="input-mode">
+                    <label class="radio-label">
+                        <input type="radio" name="inputMode" value="date" checked>
+                        <span>日期时间输入</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="inputMode" value="bazi">
+                        <span>直接输入八字</span>
+                    </label>
+                </div>
+
+                <!-- 日期时间输入 -->
+                <div id="dateInput" class="input-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>年份</label>
+                            <input type="number" id="year" placeholder="如: 1977" min="1900" max="2100" required>
+                        </div>
+                        <div class="form-group">
+                            <label>月份</label>
+                            <input type="number" id="month" placeholder="1-12" min="1" max="12" required>
+                        </div>
+                        <div class="form-group">
+                            <label>日期</label>
+                            <input type="number" id="day" placeholder="1-31" min="1" max="31" required>
+                        </div>
+                        <div class="form-group">
+                            <label>时辰</label>
+                            <select id="hour" required>
+                                <option value="">选择时辰</option>
+                                <option value="0">子时 (23-01)</option>
+                                <option value="1">丑时 (01-03)</option>
+                                <option value="3">寅时 (03-05)</option>
+                                <option value="5">卯时 (05-07)</option>
+                                <option value="7">辰时 (07-09)</option>
+                                <option value="9">巳时 (09-11)</option>
+                                <option value="11">午时 (11-13)</option>
+                                <option value="13">未时 (13-15)</option>
+                                <option value="15">申时 (15-17)</option>
+                                <option value="17">酉时 (17-19)</option>
+                                <option value="19">戌时 (19-21)</option>
+                                <option value="21">亥时 (21-23)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>历法</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="calendar" value="lunar" checked>
+                                    <span>农历</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="calendar" value="solar">
+                                    <span>公历</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>性别</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="male" checked>
+                                    <span>男</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="female">
+                                    <span>女</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="isLeap">
+                                <span>闰月（仅农历）</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 直接输入八字 -->
+                <div id="baziInput" class="input-form" style="display: none;">
+                    <div class="form-group">
+                        <label>输入八字 (用空格分隔四柱)</label>
+                        <input type="text" id="baziText" placeholder="如: 丁巳 己酉 癸未 壬戌">
+                        <small>格式: 年柱 月柱 日柱 时柱，每柱两个字(天干+地支)</small>
+                    </div>
+                </div>
+
+                <button id="calculateBtn" class="btn-primary">开始排盘</button>
+            </div>
+
+            <!-- 结果展示 -->
+            <div id="resultSection" class="result-section" style="display: none;">
+                <!-- 基本信息 -->
+                <div class="card">
+                    <h2>基本信息</h2>
+                    <div id="basicInfo" class="info-grid"></div>
+                </div>
+
+                <!-- 四柱八字 -->
+                <div class="card">
+                    <h2>四柱八字</h2>
+                    <div id="sizhu" class="sizhu-display"></div>
+                </div>
+
+                <!-- 完整报告 -->
+                <div class="card">
+                    <h2>完整报告</h2>
+                    <pre id="rawOutput" class="raw-output"></pre>
+                </div>
+            </div>
+
+            <!-- 加载提示 -->
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>正在计算中...</p>
+            </div>
+
+            <!-- 错误提示 -->
+            <div id="error" class="error-message" style="display: none;"></div>
+        </div>
+
+        <footer>
+            <p>八字排盘系统 | 仅供参考学习</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
