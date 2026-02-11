@@ -12,7 +12,7 @@ echo "========================================="
 echo ""
 
 # 先清理可能占用端口的进程
-PORT=8080
+PORT=8000
 PIDS=$(lsof -ti:$PORT 2>/dev/null)
 if [ ! -z "$PIDS" ]; then
     echo "⚠️  发现端口 $PORT 被占用，正在清理..."

@@ -51,7 +51,7 @@
 ### 2. [`app.py`](app.py:233)
 已修改端口配置以适应Render：
 ```python
-port = int(os.environ.get('PORT', 8080))
+port = int(os.environ.get('PORT', 8000))
 app.run(host='0.0.0.0', port=port, debug=False)
 ```
 
